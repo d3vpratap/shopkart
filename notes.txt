@@ -1,0 +1,36 @@
+Adding review to our products:(1:Many)
+
+
+
+collections:-
+products----
+           | Associate
+reviews----
+
+
+
+
+
+----------Review Routes!!!---------->
+
+-------flow of review--------
+
+submit form :--->productid,review
+
+1.find product form productid
+2.create a actual review in review collection
+3.push the review into product review arrays!
+
+
+
+
+
+
+
+
+Git hub commmands
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/d3vpratap/crqtae.git
+git push -u origin main
