@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost:27017/shopkar')
     })
     .catch((err)=>{
         console.log('err connecting DB',err);
-    })
+    });
 
 
 
