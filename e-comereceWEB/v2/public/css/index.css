@@ -1,0 +1,121 @@
+/* General Styling */
+body {
+    background-color: #f4f4f9; /* Subtle off-white for a clean look */
+    font-family: 'Poppins', sans-serif; /* Modern and elegant font */
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #343a40; /* Dark gray for professional headings */
+    margin-bottom: 10px;
+  }
+  
+  /* Card Styling */
+  .card {
+    border: 1px solid #dee2e6; /* Light border for subtle separation */
+    border-radius: 15px; /* Rounded corners for modern design */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Gentle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  }
+  
+  .card-img-top {
+    height: 180px; /* Consistent image height */
+    object-fit: cover; /* Preserve image aspect ratio */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.3rem;
+    color: #212529; /* Stronger contrast for titles */
+    font-weight: bold;
+    text-align: center; /* Centered title */
+  }
+  
+  .card-text {
+    font-size: 0.95rem;
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  /* Button Styling */
+  .btn {
+    background-color: #007bff; /* Primary blue */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.1); /* Slight enlarge on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Row and Column Styling */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly; /* Evenly spaced cards */
+    margin: 20px auto;
+  }
+  
+  .col-lg-3, .col-md-6 {
+    margin-bottom: 30px; /* Space between rows */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .card {
+      width: 90%; /* Full width on smaller devices */
+      margin: 0 auto;
+    }
+    .btn {
+      padding: 10px 20px; /* Larger clickable area for mobile */
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .card-img-top {
+      height: 150px; /* Adjust image height for small screens */
+    }
+    .card-title {
+      font-size: 1.1rem; /* Smaller font for titles */
+    }
+    .card-text {
+      font-size: 0.85rem;
+    }
+  }
+  
+  /* Navbar Styling */
+  .navbar {
+    background-color: #007bff;
+    padding: 10px 20px;
+  }
+  
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .navbar a:hover {
+    color: #ffdd57; /* Golden highlight */
+  }
+  
+  
