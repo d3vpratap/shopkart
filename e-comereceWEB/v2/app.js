@@ -37,7 +37,7 @@ mongoose.connect('mongodb://localhost:27017/shopkar')
 //routes:
 const productRoutes = require('./routes/products');
 const reviewRoutes = require('./routes/review');
-
+const authRoutes = require('./routes/auth');
 
 
 
