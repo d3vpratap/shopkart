@@ -8,9 +8,11 @@
                 <div class="card-body">
                   <h5 class="card-title"><%=product.name%> </h5>
                   <p class="card-text"><%=product.desc%></p>
-                  <h5 class="card-title">$<%=product.price%> </h5>
+                  <h5 class="card-title">&#8377;<%=product.price%> </h5>
                   <a href="#" class="btn btn-sm btn-primary">Buy Now</a>
-                  <a href="#" class="btn btn-sm btn-success">Add To Cart</a>
+                  <form action="/products/<%=product._id%>/cart" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-success">Add To Cart</button>
+                </form>
                   <a href="/products/<%=product._id%>/edit" class="btn btn-sm btn-secondary">Edit</a>
                  <form action="/products/<%=product._id%>?_method=DELETE" method="post" class="d-inline">
                     <button class="btn btn-sm btn-danger">Delete</button>
@@ -24,25 +26,35 @@
             <div class="mb-3">
                 <form action="/products/<%=product._id%>/review" method="post">
                     <div class="mb-3">
-                    <label for="rating" class="form-label">Rating</label>
-                        <input type="range" name="rating" id="rating" class="form-control" min="0" max="5" step="1">
+                        <label for="rating" class="form-label">Rating</label>
+                        <div id="starRating" class="d-flex gap-2">
+                            <span class="star text-secondary fs-3" data-value="1">★</span>
+                            <span class="star text-secondary fs-3" data-value="2">★</span>
+                            <span class="star text-secondary fs-3" data-value="3">★</span>
+                            <span class="star text-secondary fs-3" data-value="4">★</span>
+                            <span class="star text-secondary fs-3" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" name="rating" id="rating" value="0">
                     </div>
                     <div class="mb-3">
                         <textarea class="form-control" name="comment" id="commment" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-sm btn-success">Submit</button>
                 </form>
-                <div class="mb-3">
-                    <% for(let review of product.reviews){ %>
-                        <div class="card mb-2">
-                            <div class="card-body">
-                                <p>Rating : <%=review.rating%></p>
-                                <p><%=review.comment%></p>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </div>
-                          
-                          </div>
-                    <% } %>  
-                </div>
+                <form action="" class="container" >
+                    <div class="mb-3">
+                        <% for(let review of product.reviews){ %>
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <p>Rating : <%=review.rating%></p>
+                                    <p><%=review.comment%></p>
+                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                </div>
+                              
+                              </div>
+                        <% } %>  
+                    </div>
+                </form>
+                
         </div>
 </div>

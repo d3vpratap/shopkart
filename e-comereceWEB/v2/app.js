@@ -48,7 +48,7 @@ mongoose.connect('mongodb://localhost:27017/shopkar')
 const productRoutes = require('./routes/products');
 const reviewRoutes = require('./routes/review');
 const authRoutes = require('./routes/auth');
-
+const cartRoutes = require('./routes/cart');
 
 
 //setup app:
@@ -57,6 +57,7 @@ app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(methodOverride('_method'));
+
 
 passport.use(new LocalStrategy(User.authenticate()));
 
@@ -67,8 +68,11 @@ passport.deserializeUser(User.deserializeUser());
 app.use(productRoutes);
 app.use(reviewRoutes);
 app.use(authRoutes);
+app.use(cartRoutes);
 
-
+app.get('/', (req, res) => {
+    res.render('home');
+  })
 
 
 

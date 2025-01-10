@@ -2,7 +2,7 @@
 body {
     background-color: #f4f4f9; /* Subtle off-white for a clean look */
     font-family: 'Poppins', sans-serif; /* Modern and elegant font */
-    margin: 0;
+    margin: 10px;
     padding: 0;
   }
   
@@ -26,7 +26,7 @@ body {
   
   .card-img-top {
     height: 180px; /* Consistent image height */
-    object-fit: cover; /* Preserve image aspect ratio */
+    object-fit: cover; 
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
   }
@@ -117,5 +117,14 @@ body {
   .navbar a:hover {
     color: #ffdd57; /* Golden highlight */
   }
-  
+
+  .star:hover,
+.star:hover ~ .star {
+    color: gold !important;
+}
+
+/* Active (selected) stars */
+.star.active {
+    color: gold !important;
+}
   

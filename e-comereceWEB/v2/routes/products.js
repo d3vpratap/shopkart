@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router(); //mini express application.
 const Product = require('../models/products');
 const {isLoggedIn} = require('../middleware');
+const User = require('../models/user');
 
 //Get all products
 router.get('/products',async(req,res)=>{
@@ -38,6 +39,8 @@ router.get('/products/:productid/edit',isLoggedIn,async(req,res)=>{
 router.patch('/products/:productid',isLoggedIn,async(req,res)=>{
     const {productid} = req.params;
     const {name,price,img,desc} = req.body;
+    const cart = req.user.cart;
+    console.log(cart._id);
     await Product.findByIdAndUpdate(productid,{name,price,img,desc});
     req.flash('success','Product changes saved!');
     res.redirect(`/products/${productid}`);
