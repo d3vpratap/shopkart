@@ -4,6 +4,7 @@ const Product = require('../models/products');
 const {isLoggedIn} = require('../middleware');
 const User = require('../models/user');
 
+
 //Get all products
 router.get('/products',async(req,res)=>{
          const products =  await  Product.find({});
@@ -36,15 +37,25 @@ router.get('/products/:productid/edit',isLoggedIn,async(req,res)=>{
     const product = await Product.findById(productid);
     res.render('products/edit',{product});
 })
-router.patch('/products/:productid',isLoggedIn,async(req,res)=>{
-    const {productid} = req.params;
-    const {name,price,img,desc} = req.body;
-    const cart = req.user.cart;
-    console.log(cart._id);
-    await Product.findByIdAndUpdate(productid,{name,price,img,desc});
-    req.flash('success','Product changes saved!');
-    res.redirect(`/products/${productid}`);
-})
+router.patch('/products/:productid', isLoggedIn, async (req, res) => {
+    const { productid } = req.params;
+    const { name, price, img, desc } = req.body;
+    const cart  = req.body;
+    console.log(cart);
+    try {
+        // Update the product in the Product collection
+        await Product.findByIdAndUpdate(productid, { name, price, img, desc });
+
+        // Update product details in all carts containing this product
+
+        req.flash('success', 'Product changes saved and updated in carts!');
+        res.redirect(`/products/${productid}`);
+    } catch (err) {
+        console.error('Error updating product or cart:', err);
+        req.flash('error', 'Could not update product information!');
+        res.redirect(`/products/${productid}/edit`);
+    }
+});
 
 router.delete('/products/:productid',isLoggedIn,async(req,res)=>{
     const {productid} = req.params;

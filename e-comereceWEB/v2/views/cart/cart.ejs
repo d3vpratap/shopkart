@@ -1,39 +1,36 @@
-<% layout('layout/boilerplate') -%>
-
-<section class="container">
-  <h1 class="display-6">My Cart</h1>
-    <div class="row">
-        <div class="col-lg-8">
-            <% for(let product of cart){%>
-                <div class="card mx-auto mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                      <div class="col-4">
-                        <img src="<%=product.img%>" class="img-fluid rounded-start" alt="...">
-                      </div>
-                      <div class="col-8">
-                        <div class="card-body">
-                          <h5 class="card-title"><%=product.name%></h5>
-                          <p class="card-text">Price : <%=product.price%></p>
-                          <p>Quantity : <%=product.count%></p>
-                          <form action="/products/<%= product.id %>/cart" method="post">
-                            <div><button>Remove</button></div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            <%} %> 
+<% layout('layout/boilerplate') -%>  
+        <div class="container my-5">
+            <h1 class="mb-4 text-center">Shopping Cart</h1>
+    
+            <!-- Cart Item -->
+            <% for(let product of cart){ %>
+            <div class="row cart-item align-items-center border-bottom py-3">
+                <div class="col-md-2 text-center">
+                    <img src="<%= product.img %>" alt="Product Image" class="img-fluid rounded">
+                </div>
+                <div class="col-md-4">
+                    <h5 class="fw-bold"><%= product.name %></h5>
+                    <p class="text-muted"><%= product.desc %></p>
+                </div>
+                <div class="col-md-3 d-flex align-items-center">
+                    <label for="quantity" class="me-2">Quantity:</label>
+                    <input type="text" id="quantity" class="form-control w-50" value="<%= product.count %>" min="1">
+                </div>
+                <div class="col-md-2 text-end">
+                    <p class="fw-bold mb-0">&#8377;<%= product.price %></p>
+                </div>
+                <form action="/products/<%= product.id %>/cart/delete" class="col-md-1 text-end" method="post">
+                    <button class="btn btn-outline-danger btn-sm">Remove</button>
+                </form>
+            </div>
+            <% } %>
+    
+            <!-- Repeat the above block for each item in the cart -->
+            <!-- Cart Total -->
+            <div class="row mt-4">
+                <div class="col text-end">
+                    <p class="cart-total fw-bold fs-4">Total:&#8377 <%= totalamount %> </p>
+                    <button class="btn btn-success btn-lg">Proceed to Checkout</button>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-4">
-            <ul class="list-group">
-                <% for(const product of cart){ %> 
-                    <li class="list-group-item"><span class="fw-bold"><%= product.name %> - </span>&#8377; <%= product.price %>  x  <span><%=product.count%> </span></li>
-                <% } %> 
-                <li class="list-group-item fw-bold">Total Amount : &#8377; <%=totalAmount%> </li>
-            </ul>
-            <button class="btn btn-success btn-sm mt-3">Checkout</button>
-        </div>
-    </div>
-
-   
-</section>
