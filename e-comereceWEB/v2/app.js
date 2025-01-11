@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').config()
+}
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -8,11 +11,27 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const MongoStore = require('connect-mongo');
 //for passport
 const User = require('./models/user');
+const DB_URL = process.env.dbUrl || 'mongodb://localhost:27017/shopkar'; 
+//mongoose connection build:
+mongoose.connect(DB_URL)
+    .then(()=>{
+        console.log('DB connected!');
+    })
+    .catch((err)=>{
+        console.log('err connecting DB',err);
+    });
 
+const store = MongoStore.create({   
+     mongoUrl:DB_URL,
+     touchAfter:24*3600
+    })
+const SECRET = process.env.SECRET || 'shut-up'
 const sessionConfig = {
-    secret: 'shut-up',
+    store,
+    secret: SECRET,
     resave: false,
     saveUninitialized: true,
     cookie:{
@@ -32,17 +51,6 @@ app.use((req,res,next)=>{
     res.locals.currentUser = req.user;
     next();
 })
-
-//mongoose connection build:
-mongoose.connect('mongodb://localhost:27017/shopkar')
-    .then(()=>{
-        console.log('DB connected!');
-    })
-    .catch((err)=>{
-        console.log('err connecting DB',err);
-    });
-
-
 
 //routes:
 const productRoutes = require('./routes/products');
@@ -79,8 +87,8 @@ app.get('/', (req, res) => {
 
 
 
-
+  const portNumber = process.env.PORT || 8000
 //server!!!!!!!!!!!!
-app.listen(8000,()=>{
-    console.log("server listening at port 8000");
+app.listen(portNumber,()=>{
+    console.log(`server listening at port ${portNumber} `);
 });
