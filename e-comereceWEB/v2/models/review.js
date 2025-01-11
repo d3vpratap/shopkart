@@ -5,7 +5,8 @@ const reviewSchema = new mongoose.Schema({
         type:Number,
         // default:4
     },
-    comment:String  
+    comment:String,  
+    author:String
 })
 
 const Review = mongoose.model('Review',reviewSchema);

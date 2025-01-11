@@ -24,7 +24,12 @@ const userSchema = new mongoose.Schema({
                         min: [0, 'Quantity Cannot be less than 1']
                         }
             }
-    ]
+    ],
+    userType:{
+        type:String,
+        enum: ['customer','retailer'], //can only take these two types of values:
+        default:'customer' 
+    }
  }) 
 userSchema.plugin(passportLocalMongoose); //--->this will take control and also it stores password in hash format:
 const User = mongoose.model('User',userSchema);

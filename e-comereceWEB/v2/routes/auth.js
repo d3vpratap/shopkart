@@ -12,13 +12,13 @@ router.get('/register',(req,res)=>{
 
 //after signup form is submitted!
 router.post('/register',async(req,res)=>{
-    const {username , email, password} = req.body;
+    const {username , email, password, userType} = req.body;
     // const foundUser = await User.findOne({username,password,email});
     // if(foundUser){
     //     return res.send('Details are Already registered!')
     // }
     try{
-     const user = new User ({username,email});
+     const user = new User ({username,email,userType});
     await User.register(user,password); 
     req.flash('success','User Registered Successfully!');
     res.redirect('/login');

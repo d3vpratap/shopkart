@@ -13,10 +13,12 @@
                   <form action="/products/<%=product._id%>/cart" method="post" class="d-inline">
                     <button type="submit" class="btn btn-sm btn-success">Add To Cart</button>
                 </form>
+                <% if(currentUser && product.author && product.author.equals(currentUser._id)){ %>
                   <a href="/products/<%=product._id%>/edit" class="btn btn-sm btn-secondary">Edit</a>
                  <form action="/products/<%=product._id%>?_method=DELETE" method="post" class="d-inline">
                     <button class="btn btn-sm btn-danger">Delete</button>
                  </form>
+                 <% } %>
                 </div>
             </div>
         </div>
@@ -43,11 +45,14 @@
                 </form>
                 <form action="" class="container" >
                     <div class="mb-3">
-                        <% for(let review of product.reviews){ %>
+                        <% for(let review of product.reviews.reverse()){ %>
                             <div class="card mb-2">
                                 <div class="card-body">
                                     <p>Rating : <%=review.rating%></p>
                                     <p><%=review.comment%></p>
+                                    <% if(review.author){ %>
+                                        <p><span class="text-capitalize text-secondary">user:<%= review.author %></span></p>
+                                        <% } %>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </div>
                               

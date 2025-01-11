@@ -17,7 +17,7 @@
                     <input type="text" id="quantity" class="form-control w-50" value="<%= product.count %>" min="1">
                 </div>
                 <div class="col-md-2 text-end">
-                    <p class="fw-bold mb-0">&#8377;<%= product.price %></p>
+                    <p class="fw-bold mb-0">&#8377;<%= product.price%></p>
                 </div>
                 <form action="/products/<%= product.id %>/cart/delete" class="col-md-1 text-end" method="post">
                     <button class="btn btn-outline-danger btn-sm">Remove</button>
