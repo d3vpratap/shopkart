@@ -1,7 +1,10 @@
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').config()
+}
 const mongoose = require('mongoose');
 const Product = require('./models/products');
-
-mongoose.connect("mongodb://localhost:27017/shopkar")
+const DB_URL = process.env.DB_URL || 'mongodb://localhost:27017/shopkar';
+mongoose.connect(DB_URL)
 .then(()=>{
     console.log('DB connected!');
 })
@@ -11,57 +14,20 @@ mongoose.connect("mongodb://localhost:27017/shopkar")
 
 
 const products = [
-    {
-        name: 'Iphone 11',
-        img: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aXBob25lfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-        price: 300,
-        discount:10,
-        desc: "The iPhone is a line of smartphones designed and marketed by Apple Inc. that use Apple's iOS mobile operating system. The first-generation iPhone was announced by then-Apple CEO Steve Jobs on January 9, 2007. Since then, Apple has annually released new iPhone models and iOS updates. As of November 1, 2018, more than 2.2 billion iPhones had been sold."
-    },
-    {
-        name: 'Nike Shoes',
-        img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2hvZXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-        price: 100,
-        discount:10,
-        desc: "The iPhone is a line of smartphones designed and marketed by Apple Inc. that use Apple's iOS mobile operating system. The first-generation iPhone was announced by then-Apple CEO Steve Jobs on January 9, 2007. Since then, Apple has annually released new iPhone models and iOS updates. As of November 1, 2018, more than 2.2 billion iPhones had been sold."
-    },
-    {
-        name: 'Titan Watch',
-        img: 'https://images.unsplash.com/photo-1609587312208-cea54be969e7?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8d2F0Y2hlc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-        price: 150,
-        discount:10,
-        desc: "The iPhone is a line of smartphones designed and marketed by Apple Inc. that use Apple's iOS mobile operating system. The first-generation iPhone was announced by then-Apple CEO Steve Jobs on January 9, 2007. Since then, Apple has annually released new iPhone models and iOS updates. As of November 1, 2018, more than 2.2 billion iPhones had been sold."
-    },
-    {
-        name: 'Macbook Pro',
-        img: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWFjYm9va3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-        price: 250,
-        discount:10,
-        desc: "The iPhone is a line of smartphones designed and marketed by Apple Inc. that use Apple's iOS mobile operating system. The first-generation iPhone was announced by then-Apple CEO Steve Jobs on January 9, 2007. Since then, Apple has annually released new iPhone models and iOS updates. As of November 1, 2018, more than 2.2 billion iPhones had been sold."
-    },
-    {
-        name: 'Drones',
-        img: 'https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZHJvbmVzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-        price: 250,
-        discount:10,
-        desc: "The iPhone is a line of smartphones designed and marketed by Apple Inc. that use Apple's iOS mobile operating system. The first-generation iPhone was announced by then-Apple CEO Steve Jobs on January 9, 2007. Since then, Apple has annually released new iPhone models and iOS updates. As of November 1, 2018, more than 2.2 billion iPhones had been sold."
-    },
-    {
-        name: 'More Drones',
-        img: 'https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZHJvbmVzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-        price: 350,
-        discount:10,
-        desc: "The iPhone is a line of smartphones designed and marketed by Apple Inc. that use Apple's iOS mobile operating system. The first-generation iPhone was announced by then-Apple CEO Steve Jobs on January 9, 2007. Since then, Apple has annually released new iPhone models and iOS updates. As of November 1, 2018, more than 2.2 billion iPhones had been sold."
-    },
-    {
-        name: 'Bicycle',
-        img: 'https://images.unsplash.com/photo-1484920274317-87885fcbc504?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YnljaWNsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-        price: 350,
-        discount:10,
-        desc: "The iPhone is a line of smartphones designed and marketed by Apple Inc. that use Apple's iOS mobile operating system. The first-generation iPhone was announced by then-Apple CEO Steve Jobs on January 9, 2007. Since then, Apple has annually released new iPhone models and iOS updates. As of November 1, 2018, more than 2.2 billion iPhones had been sold."
-    },
+    { name: 'Apple iPhone 13', img: 'https://m.media-amazon.com/images/I/71fVoqRC0wL._SX679_.jpg', price: 9999, discount: 10, desc: 'The latest iPhone with A15 Bionic chip and stunning OLED display.' },
+    { name: 'Samsung Galaxy S23', img: 'https://m.media-amazon.com/images/I/71HUnJvHsbL._SX679_.jpg', price: 79999, discount: 15, desc: 'Experience flagship performance with Samsung Galaxy S23.' },
+    { name: 'Sony WH-1000XM5', img: 'https://m.media-amazon.com/images/I/71o8Q5XJS5L._SX679_.jpg', price: 3990, discount: 20, desc: 'Industry-leading noise cancellation with premium sound quality.' },
+    { name: 'Apple 2024 MacBook Pro', img: 'https://m.media-amazon.com/images/I/61-RZxVEeCL._SX679_.jpg', price: 240990, discount: 5, desc: 'Active noise-canceling earbuds with spatial audio.' },
+    { name: 'Fujifilm Instax Mini 12 Instant Camera-Pink', img: 'https://m.media-amazon.com/images/I/61+5Ld-oc1L._SX679_.jpg', price: 7490, discount: 5, desc: 'Active noise-canceling earbuds with spatial audio.' },
+    { name: 'QARA Wood Laminated Study Table', img: 'https://m.media-amazon.com/images/I/715HPsS6s6L._SX679_.jpg', price: 2490, discount: 5, desc: 'Active noise-canceling earbuds with spatial audio.' },
+    { name: 'Gaming Mouse Pad| Desk Mat | Stitched Edges|', img: 'https://m.media-amazon.com/images/I/71h9KVhOXkL._SX679_.jpg', price: 120, discount: 5, desc: 'Active noise-canceling earbuds with spatial audio.' },
+    { name: 'MSI G244F E2 24 Inch FHD Gaming Monitor', img: 'https://m.media-amazon.com/images/I/715nKDtFJQL._SX679_.jpg', price: 1290, discount: 5, desc: 'Active noise-canceling earbuds with spatial audio.' },
+    { name: 'Noise Twist Go Round dial Smartwatch ', img: 'https://m.media-amazon.com/images/I/61q0ZgCYoJL._SX679_.jpg', price: 999, discount: 5, desc: 'Active noise-canceling earbuds with spatial audio.' },
 
 ];
+  
+
+    
 
 
 async function seed(){

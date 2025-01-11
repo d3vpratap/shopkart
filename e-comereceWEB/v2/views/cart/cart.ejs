@@ -1,6 +1,6 @@
 <% layout('layout/boilerplate') -%>  
         <div class="container my-5">
-            <h1 class="mb-4 text-center">Shopping Cart</h1>
+            <h1 class="mb-4 text-center">ShopKart</h1>
     
             <!-- Cart Item -->
             <% for(let product of cart){ %>
@@ -27,10 +27,13 @@
     
             <!-- Repeat the above block for each item in the cart -->
             <!-- Cart Total -->
-            <div class="row mt-4">
-                <div class="col text-end">
-                    <p class="cart-total fw-bold fs-4">Total:&#8377 <%= totalamount %> </p>
-                    <button class="btn btn-success btn-lg">Proceed to Checkout</button>
+             <form action="/payment" method="get">
+                <div class="row mt-4">
+                    <div class="col text-end">
+                            <p class="cart-total fw-bold fs-4">Total:&#8377 <%= totalamount %> </p>
+                            <button class="btn btn-success btn-sm">Proceed to Checkout</button>
+                         </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </form>
+            

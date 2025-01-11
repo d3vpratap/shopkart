@@ -14,7 +14,7 @@ const LocalStrategy = require('passport-local');
 const MongoStore = require('connect-mongo');
 //for passport
 const User = require('./models/user');
-const DB_URL = process.env.dbUrl || 'mongodb://localhost:27017/shopkar'; 
+const DB_URL = process.env.DB_URL || 'mongodb://localhost:27017/shopkar'; 
 //mongoose connection build:
 mongoose.connect(DB_URL)
     .then(()=>{
@@ -57,6 +57,7 @@ const productRoutes = require('./routes/products');
 const reviewRoutes = require('./routes/review');
 const authRoutes = require('./routes/auth');
 const cartRoutes = require('./routes/cart');
+const paymentRoutes = require('./routes/payment');
 
 
 //setup app:
@@ -77,10 +78,13 @@ app.use(productRoutes);
 app.use(reviewRoutes);
 app.use(authRoutes);
 app.use(cartRoutes);
+app.use(express.json());
+app.use(paymentRoutes);
 
 
 app.get('/', (req, res) => {
-    res.render('home');
+    const currentUser = req.user;
+       res.render('home',{currentUser});
   })
 
 

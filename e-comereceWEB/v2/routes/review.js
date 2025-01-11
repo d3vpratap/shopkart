@@ -22,5 +22,4 @@ router.post('/products/:productid/review',async(req,res)=>{
     product.save();
     res.redirect(`/products/${productid}`);
 })
-
 module.exports = router;

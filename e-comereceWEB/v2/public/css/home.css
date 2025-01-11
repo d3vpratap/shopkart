@@ -1,0 +1,30 @@
+/* Custom Styles */
+.hero-section {
+    background-image: url('https://i.ibb.co/VwHPn0W/shopkart-Home.jpg'); /* Add your image */
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+.features .col-md-4 {
+    margin-bottom: 20px;
+}
+
+footer {
+    background: #f8f9fa;
+    padding: 20px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        height: auto;
+        padding: 50px 20px;
+        text-align: center;
+    }
+}

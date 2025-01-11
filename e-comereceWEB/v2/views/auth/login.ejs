@@ -1,16 +1,17 @@
 <% layout('layout/boilerplate') -%>
 
-<div class="border p-3 mx-auto w-50"> 
-    <h1>Login</h1>
+<div class="border p-4 bg- mx-auto w-50 d-flex justify-content-between"> 
+    <h1 class="text-secondary mt-5">Login⎆</h1>
     <form action="/login" method="post">
         <div class="mb-3">
-            <label class="form-label" for="username">Username</label>
-            <input class="form-control" type="text" name="username" id="username">
+            <label class="form-label border border-black" for="username">Username</label>
+            <input class="form-control " type="text" name="username" id="username">
         </div>
         <div class="mb-3">
-            <label class="form-label" for="password">Password</label>
+            <label class="form-label border border-black" for="password">&#x1F511;Password</label>
             <input class="form-control" type="password" name="password" id="password">
         </div>
         <button type="submit" class="btn btn-sm btn-success">Login</button>
+        <a class="text-decoration-none text-secondary" href="/register">New user?</a>
     </form>
 </div

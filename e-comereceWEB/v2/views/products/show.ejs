@@ -9,7 +9,10 @@
                   <h5 class="card-title"><%=product.name%> </h5>
                   <p class="card-text"><%=product.desc%></p>
                   <h5 class="card-title">&#8377;<%=product.price%> </h5>
-                  <a href="#" class="btn btn-sm btn-primary">Buy Now</a>
+                    <p><span class="text-secondary">Retailer- <%= product.author %></span></p>
+                    <form class="d-inline" action="/products/<%=product._id%>/cart" method="post">
+                        <button type="submit" class="btn btn-sm btn-primary">Buy</button>
+                    </form>
                   <form action="/products/<%=product._id%>/cart" method="post" class="d-inline">
                     <button type="submit" class="btn btn-sm btn-success">Add To Cart</button>
                 </form>
@@ -43,7 +46,7 @@
                     </div>
                     <button type="submit" class="btn btn-sm btn-success">Submit</button>
                 </form>
-                <form action="" class="container" >
+                <form action="" class="container"  method="post">
                     <div class="mb-3">
                         <% for(let review of product.reviews.reverse()){ %>
                             <div class="card mb-2">
@@ -53,7 +56,9 @@
                                     <% if(review.author){ %>
                                         <p><span class="text-capitalize text-secondary">user:<%= review.author %></span></p>
                                         <% } %>
+                                        <% if(product.author.equals(currentUser._id)){ %>
                                     <button class="btn btn-sm btn-danger">Delete</button>
+                                            <% } %>
                                 </div>
                               
                               </div>

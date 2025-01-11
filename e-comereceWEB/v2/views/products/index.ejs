@@ -1,6 +1,6 @@
 <% layout('layout/boilerplate') -%>
 <section>
-    <div class="container py-5">
+    <div class="container py-2">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             <% for (const product of products) { %>
                 <div class="col">
@@ -12,7 +12,7 @@
                             <h5 class="card-title text-center fw-bold"><%= product.name %></h5>
                             <p class="card-text text-center text-muted"><%= product.desc %></p>
                             <h5 class="card-title text-center text-success">&#8377; <%= product.price %></h5>
-                            <a href="/products/<%= product._id %>" class="btn btn-primary btn-sm mt-auto">Buy Now</a>
+                            <a href="/products/<%= product._id %>" class="btn btn-dark btn-sm mt-auto">Buy Now</a>
                         </div>
                     </div>
                 </div>

@@ -25,6 +25,7 @@ router.post('/products',isLoggedIn,isAuthorise,async(req,res)=>{
             const author = req.user._id;
         await Product.create({name,price,desc,img,author});
         req.flash('success','Product Created Succesfully!');
+        const user = req.user;
         res.redirect('/products');
     }
     catch(e){
