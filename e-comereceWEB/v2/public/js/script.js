@@ -1,4 +1,21 @@
     // Wait until the page is fully loaded
+    document.addEventListener("DOMContentLoaded", () => {
+        const loader = document.getElementById("loader");
+        
+        setTimeout(()=>{
+            loader.setAttribute('background-image',URL('https://i.ibb.co/VwHPn0W/shopkart-Home.jpg'));
+        })
+        // Hide the loader after 2 seconds (adjust as needed)
+        setTimeout(() => {
+            loader.classList.add("hidden");
+        }, 1000);
+    
+        // Optionally, remove the loader when a specific event occurs
+        window.addEventListener("load", () => {
+            loader.classList.add("hidden");
+        });
+    });
+    
     window.onload = () => {
         // Select all alert elements
         const alerts = document.querySelectorAll('.alert');
