@@ -38,15 +38,16 @@
             <div class="alert alert-info text-center">
                 You are just one step away from completing your purchase!
             </div>
-            <button id="rzp-button" class="btn btn-pay btn-lg w-100">Pay Now</button>
+                <form action="/create/order" method="post"> 
+                    <button id="rzp-button" class="btn btn-pay btn-lg w-100">Pay Now</button>
+                </form>
         </div>
         <form action="/products/user/cart" method="get">
             <button id="button" class="btn btn-secondary btn-sm w-10">Cart</button>
         </form>
-        
     </div>
-    <script>
-        const options = {
+    <!-- <script>
+            const options = {
             key: "<%= key %>", // Razorpay key ID passed from server
             amount: "<%= totalamount * 100 %>", // Amount in paise (e.g., 50000 for ₹500)
             currency: "INR",
@@ -57,22 +58,21 @@
                 console.log(response);
             },
             prefill: {
-                name: "<%= user.name %>",
-                email: "<%= user.email %>",
-                contact: "9999999999",
+                name: "<%= currentUser.username %>",
+                email: "<%= currentUser.email %>",
+                contact: "<%= currentUser.contactNumber %>",
             },
             theme: {
                 color: "#3399cc",
             },
         };
-
-        const rzp = new Razorpay(options);
-        document.getElementById('rzp-button').onclick = function (e) {
-            rzp.open();
-            e.preventDefault();
-        };
-    </script>
-    
+        // const rzp = new Razorpay(options);
+        // document.getElementById('rzp-button').onclick = function (e) {
+        //     rzp.open();
+        //     e.preventDefault();
+        // };
+    </script> -->
+    <script src="js/payment.js"></script>
 </body>
 </html>
 

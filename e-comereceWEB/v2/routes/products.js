@@ -29,7 +29,7 @@ router.post('/products',isLoggedIn,isAuthorise,async(req,res)=>{
         res.redirect('/products');
     }
     catch(e){
-        req.flash('error','Product cannot be created');
+        req.flash('error',`Product cannot be created due to ${e}` );
         res.redirect('/products/new');
     }
     

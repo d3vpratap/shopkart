@@ -1,20 +1,23 @@
 <% layout('layout/boilerplate') -%>
 
 <div class="border p-3 mx-auto w-50">
-    <%- include("../partials/flash") %> 
     <h1>Sign Up</h1>
     <form action="/register" method="post">
         <div class="mb-3">
             <label class="form-label" for="username">Username</label>
-            <input class="form-control" type="text" name="username" id="username">
+            <input class="form-control" type="text" name="username" id="username" placeholder="username">
         </div>
         <div class="mb-3">
             <label class="form-label" for="email">Email</label>
-            <input class="form-control" type="email" name="email" id="email">
+            <input class="form-control" type="email" name="email" id="email" placeholder="example@gmail.com">
         </div>
         <div class="mb-3">
             <label class="form-label" for="password">Password</label>
-            <input class="form-control" type="password" name="password" id="password">
+            <input class="form-control" type="password" name="password" id="password" placeholder="New password">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="contactNumber">Contact Number</label>
+            <input class="form-control" type="number" name="contactNumber" id="contactNumber" placeholder="10 digit Number">
         </div>
         <div class="mb-2">
             <p class="mb-1">You are ?</p>

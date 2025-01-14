@@ -11,6 +11,16 @@ const userSchema = new mongoose.Schema({
     email:{
         type:String
     },
+    contactNumber:{
+        type:String,
+        // required:[true , 'Mandatory!'],
+        validate: {
+            validator: function (v) {
+                return /^\d{10}$/.test(v); // Validates exactly 10 digits
+            },
+            message: props => `${props.value} is not a valid 10-digit number!`
+        }
+    },
     cart: [
             {   
                 _id:false,

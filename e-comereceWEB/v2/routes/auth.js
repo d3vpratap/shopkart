@@ -12,19 +12,19 @@ router.get('/register',(req,res)=>{
 
 //after signup form is submitted!
 router.post('/register',async(req,res)=>{
-    const {username , email, password, userType} = req.body;
+    const {username , email, password, contactNumber, userType} = req.body;
     // const foundUser = await User.findOne({username,password,email});
     // if(foundUser){
     //     return res.send('Details are Already registered!')
     // }
     try{
-     const user = new User ({username,email,userType});
+     const user = new User ({username,email,contactNumber,userType});
     await User.register(user,password); 
     req.flash('success','User Registered Successfully!');
     res.redirect('/login');
     }
     catch(e){
-        req.flash('error','Cannot register!')
+        req.flash('error',`Cannot register due to: ${e} ` );
         res.redirect('/register');
         console.log(e);
       
@@ -44,7 +44,7 @@ router.post('/login',passport.authenticate('local',
         
     }),
     function(req, res) {
-        const{username} = req.user;
+        const{ username } = req.user;
         // console.log(username);
         req.flash('success',`Hello ${username}`);
       res.redirect('/products');
@@ -61,3 +61,6 @@ router.get('/logout',isLoggedIn,(req,res)=>{
     
 
 module.exports  = router;
+
+
+
